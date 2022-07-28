@@ -12,6 +12,7 @@ import ListResultComponent from "./components/User/ListResultComponent";
 import DashBoardsComponent from "./components/Admin/DashBoardsComponent";
 import AccountsManagementComponent from "./components/Admin/AccountsManagementComponent";
 import ExamsManagementComponent from "./components/Admin/ExamsManagementComponent";
+import EditExamComponent from "./components/Admin/EditExamComponent";
 
 function App() {
     let checkLogin = sessionStorage.getItem('token') === null ? false : true;
@@ -39,10 +40,11 @@ function App() {
                         <Route path="/result" element={<ExamResult/>}/>
                         <Route path="/results" element={<ListResultComponent/>}/>
                     </Route>
-                    <Route element={<Admin/>}>
-                        <Route path="/admin" element={<DashBoardsComponent/>}/>
-                        <Route path="/accounts" element={<AccountsManagementComponent/>}/>
-                        <Route path="/examsManagement" element={<ExamsManagementComponent/>}/>
+                    <Route path="/admin" element={<Admin/>}>
+                        <Route path="dashboards" element={<DashBoardsComponent/>}/>
+                        <Route path="accounts" element={<AccountsManagementComponent/>}/>
+                        <Route path="examsManagement" element={<ExamsManagementComponent/>}/>
+                        <Route path="examsManagement/:id" element={<EditExamComponent/>}/>
                     </Route>
                     <Route path="*" element={<NoPage/>}/>
                 </Route>

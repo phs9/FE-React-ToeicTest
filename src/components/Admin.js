@@ -110,22 +110,22 @@ export default function Admin() {
                                                 <li className="sidebar-header">
                                                     Pages
                                                 </li>
-                                                <li className={"sidebar-item " + (url === '/admin' ? "active" : "")}>
-                                                    <a className="sidebar-link" onClick={() => navigate('/admin')}>
+                                                <li className={"sidebar-item " + (url === '/admin/dashboards' ? "active" : "")}>
+                                                    <a className="sidebar-link" onClick={() => navigate('/admin/dashboards')}>
                                                         <IconHome/>
                                                         <span className="align-middle">Dashboards</span>
                                                     </a>
                                                 </li>
-                                                <li className={"sidebar-item " + (url === '/accounts' ? "active" : "")}>
+                                                <li className={"sidebar-item " + (url === '/admin/accounts' ? "active" : "")}>
                                                     <a className="sidebar-link" onClick={() => {
-                                                        navigate('/accounts')
+                                                        navigate('/admin/accounts')
                                                     }}>
                                                         <IconUsers/>
                                                         <span className="align-middle">Quản lý tài khoản</span>
                                                     </a>
                                                 </li>
-                                                <li className={"sidebar-item " + (url === (id === undefined ? '/examsManagement' : '/examsManagement/' + id) ? "active" : "")}>
-                                                    <a className="sidebar-link" onClick={() => navigate('/examsManagement')}>
+                                                <li className={"sidebar-item " + (url === (id === undefined ? '/admin/examsManagement' : '/admin/examsManagement/' + id) ? "active" : "")}>
+                                                    <a className="sidebar-link" onClick={() => navigate('/admin/examsManagement')}>
                                                         <Briefcase/>
                                                         <span className="align-middle">Quản lý đề thi</span>
                                                     </a>

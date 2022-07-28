@@ -1,0 +1,46 @@
+.Qtable>:not(caption)>*>* {
+    background-color: var(--bs-table-bg);
+    border-bottom-width: 1px;
+    box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+    padding: 0;
+}
+
+.Qtable>:not(caption)>*>* {
+    padding: 0;
+    background-color: var(--bs-table-bg);
+    border-bottom-width: 1px;
+    box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+}
+
+.form-control-lg1 {
+    border-radius: 0;
+    font-size: .925rem;
+    min-height: calc(2.1875rem + 2px);
+    padding: 0;
+}
+
+.form-control1 {
+    appearance: none;
+    background-clip: padding-box;
+    background-color: #fff;
+    border: 0;
+    border-radius: 0;
+    color: #495057;
+    display: block;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding-left: 5px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    width: 100%;
+}
+
+.tableFixHead {
+    overflow-y: scroll;
+    height: 75vh;
+}
+.tableFixHead thead th {
+    position: sticky;
+    top: 0;
+    background: #eee;
+}

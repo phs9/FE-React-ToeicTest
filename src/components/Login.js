@@ -42,25 +42,6 @@ export default function Login() {
 
 
     return (
-        // <div>
-        //     <form>
-        //         <div>
-        //             <label>Tên đăng nhập</label>
-        //             <input type="text" id="usename" onChange={(e) => {
-        //                 uid = e.target.value
-        //             }}/>
-        //         </div>
-        //         <div>
-        //             <label>Mật khẩu</label>
-        //             <input type="password" id="password" onChange={(e) => {
-        //                 pass = e.target.value
-        //             }}/>
-        //         </div>
-        //         <div>
-        //             <button onClick={login}>Login</button>
-        //         </div>
-        //     </form>
-        // </div>
         <div>
             <main className="d-flex w-100">
                 <div className="container d-flex flex-column">
