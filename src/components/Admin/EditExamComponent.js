@@ -17,7 +17,7 @@ export default function EditExamComponent() {
     });
     const [questionIDs, setQIDs] = useState([]);
 
-    useEffect(() => {
+    const getData=()=>{
         if (id === '_add') return;
         console.log('useEffect call!');
         HTTP.get('/admin/exam/' + id).then((res) => {
@@ -25,6 +25,10 @@ export default function EditExamComponent() {
         }).catch((error) => {
             console.log(error)
         })
+    }
+
+    useEffect(() => {
+        getData();
     }, []);
 
     useEffect(() => {
@@ -36,6 +40,24 @@ export default function EditExamComponent() {
     // console.log(b);
     //console.log(Array.isArray(questionIDs));
 
+    function createOrUpdateExam(e) {
+        e.preventDefault();
+        if (id === '_add') {
+            HTTP.post('/admin/createExam', exam).then((res) => {
+                console.log(res.data);
+                navigate('/admin/examsManagement/' + res.data);
+            }).catch((error) => {
+                console.log(error)
+            })
+        } else {
+            HTTP.put('/admin/updateExam/' + id, exam).then((res) => {
+                console.log(res.data);
+            }).catch((error) => {
+                console.log(error)
+            })
+        }
+    }
+
     function updateExamRefQ() {
         let questionIDsFinal = questionIDs.map((x) => {
             return parseInt(x, 10)
@@ -43,7 +65,8 @@ export default function EditExamComponent() {
         if (isNaN(questionIDsFinal[0])) questionIDsFinal = [];
         console.log(questionIDsFinal);
         HTTP.post('/admin/updateExamRefQ/' + exam.id, questionIDsFinal).then((res) => {
-            console.log(res)
+            console.log(res);
+            getData();
         }).catch((error) => {
             console.log(error)
         })
@@ -123,7 +146,8 @@ export default function EditExamComponent() {
                                             flexDirection: "column",
                                             alignItems: "center"
                                         }}>
-                                            <button className="btn btn-primary">Lưu</button>
+                                            <button className="btn btn-primary" onClick={createOrUpdateExam}>Lưu
+                                            </button>
                                             <button className="btn btn-secondary"
                                                     onClick={() => navigate('/admin/examsManagement')}>Huỷ
                                             </button>
@@ -191,111 +215,111 @@ export default function EditExamComponent() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="tableFixHead">
-                                    <table className="table Qtable table-bordered caption-top"
-                                           style={{textAlign: "center", verticalAlign: "middle"}}>
-                                        <caption>Danh sách câu hỏi</caption>
-                                        <thead style={{verticalAlign: "middle"}}>
-                                        <tr>
-                                            <th scope="col">Chọn</th>
-                                            <th scope="col">#</th>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Part</th>
-                                            <th scope="col">Group</th>
-                                            <th scope="col">Audio</th>
-                                            <th scope="col">Picture</th>
-                                            <th scope="col">Group thread</th>
-                                            <th scope="col">Thread</th>
-                                            <th scope="col">Answer A</th>
-                                            <th scope="col">Answer B</th>
-                                            <th scope="col">Answer C</th>
-                                            <th scope="col">Answer D</th>
-                                            <th scope="col">Correct answer</th>
+                                {/*<div className="tableFixHead">*/}
+                                {/*    <table className="table Qtable table-bordered caption-top"*/}
+                                {/*           style={{textAlign: "center", verticalAlign: "middle"}}>*/}
+                                {/*        <caption>Danh sách câu hỏi</caption>*/}
+                                {/*        <thead style={{verticalAlign: "middle"}}>*/}
+                                {/*        <tr>*/}
+                                {/*            <th scope="col">Chọn</th>*/}
+                                {/*            <th scope="col">#</th>*/}
+                                {/*            <th scope="col">ID</th>*/}
+                                {/*            <th scope="col">Part</th>*/}
+                                {/*            <th scope="col">Group</th>*/}
+                                {/*            <th scope="col">Audio</th>*/}
+                                {/*            <th scope="col">Picture</th>*/}
+                                {/*            <th scope="col">Group thread</th>*/}
+                                {/*            <th scope="col">Thread</th>*/}
+                                {/*            <th scope="col">Answer A</th>*/}
+                                {/*            <th scope="col">Answer B</th>*/}
+                                {/*            <th scope="col">Answer C</th>*/}
+                                {/*            <th scope="col">Answer D</th>*/}
+                                {/*            <th scope="col">Correct answer</th>*/}
 
-                                        </tr>
-                                        </thead>
+                                {/*        </tr>*/}
+                                {/*        </thead>*/}
 
-                                        {/*<tbody>*/}
-                                        {/*{exam.questionsFull.map((item, index) =>*/}
-                                        {/*    <tr key={index}>*/}
-                                        {/*        <td>*/}
+                                {/*        /!*<tbody>*!/*/}
+                                {/*        /!*{exam.questionsFull.map((item, index) =>*!/*/}
+                                {/*        /!*    <tr key={index}>*!/*/}
+                                {/*        /!*        <td>*!/*/}
 
-                                        {/*        </td>*/}
-                                        {/*        <td>{index + 1}</td>*/}
-                                        {/*        <td>{item.id}</td>*/}
-                                        {/*        <td>*/}
-                                        {/*            <input className="form-control1 form-control-lg1" type="number"*/}
-                                        {/*                   name={item.id + '.part'}*/}
-                                        {/*                   value={item.part}*/}
-                                        {/*            />*/}
-                                        {/*        </td>*/}
-                                        {/*        <td>*/}
-                                        {/*            <input className="form-control1 form-control-lg1" type="number"*/}
-                                        {/*                   name={item.id + '.group'}*/}
-                                        {/*                   value={item.group}*/}
-                                        {/*            />*/}
-                                        {/*        </td>*/}
-                                        {/*        <td>*/}
-                                        {/*            <input className="form-control1 form-control-lg1" type="text"*/}
-                                        {/*                   name={item.id + '.audio'}*/}
-                                        {/*                   value={item.audio}*/}
-                                        {/*            />*/}
-                                        {/*        </td>*/}
-                                        {/*        <td>*/}
-                                        {/*            <input className="form-control1 form-control-lg1" type="text"*/}
-                                        {/*                   name={item.id + '.picture'}*/}
-                                        {/*                   value={item.picture}*/}
-                                        {/*            />*/}
-                                        {/*        </td>*/}
-                                        {/*        <td>*/}
-                                        {/*            <input className="form-control1 form-control-lg1" type="text"*/}
-                                        {/*                   name={item.id + '.group_thread'}*/}
-                                        {/*                   value={item.group_thread}*/}
-                                        {/*            />*/}
-                                        {/*        </td>*/}
-                                        {/*        <td>*/}
-                                        {/*            <input className="form-control1 form-control-lg1" type="text"*/}
-                                        {/*                   name={item.id + '.thread'}*/}
-                                        {/*                   value={item.thread}*/}
-                                        {/*            />*/}
-                                        {/*        </td>*/}
-                                        {/*        <td>*/}
-                                        {/*            <input className="form-control1 form-control-lg1" type="text"*/}
-                                        {/*                   name={item.id + '.answerA'}*/}
-                                        {/*                   value={item.answerA}*/}
-                                        {/*            />*/}
-                                        {/*        </td>*/}
-                                        {/*        <td>*/}
-                                        {/*            <input className="form-control1 form-control-lg1" type="text"*/}
-                                        {/*                   name={item.id + '.answerB'}*/}
-                                        {/*                   value={item.answerB}*/}
-                                        {/*            />*/}
-                                        {/*        </td>*/}
-                                        {/*        <td>*/}
-                                        {/*            <input className="form-control1 form-control-lg1" type="text"*/}
-                                        {/*                   name={item.id + '.answerC'}*/}
-                                        {/*                   value={item.answerC}*/}
-                                        {/*            />*/}
-                                        {/*        </td>*/}
-                                        {/*        <td>*/}
-                                        {/*            <input className="form-control1 form-control-lg1" type="text"*/}
-                                        {/*                   name={item.id + '.answerD'}*/}
-                                        {/*                   value={item.answerD}*/}
-                                        {/*            />*/}
-                                        {/*        </td>*/}
-                                        {/*        <td>*/}
-                                        {/*            <input className="form-control1 form-control-lg1" type="text"*/}
-                                        {/*                   name={item.id + '.corectAnswer'}*/}
-                                        {/*                   value={item.corectAnswer}*/}
-                                        {/*            />*/}
-                                        {/*        </td>*/}
+                                {/*        /!*        </td>*!/*/}
+                                {/*        /!*        <td>{index + 1}</td>*!/*/}
+                                {/*        /!*        <td>{item.id}</td>*!/*/}
+                                {/*        /!*        <td>*!/*/}
+                                {/*        /!*            <input className="form-control1 form-control-lg1" type="number"*!/*/}
+                                {/*        /!*                   name={item.id + '.part'}*!/*/}
+                                {/*        /!*                   value={item.part}*!/*/}
+                                {/*        /!*            />*!/*/}
+                                {/*        /!*        </td>*!/*/}
+                                {/*        /!*        <td>*!/*/}
+                                {/*        /!*            <input className="form-control1 form-control-lg1" type="number"*!/*/}
+                                {/*        /!*                   name={item.id + '.group'}*!/*/}
+                                {/*        /!*                   value={item.group}*!/*/}
+                                {/*        /!*            />*!/*/}
+                                {/*        /!*        </td>*!/*/}
+                                {/*        /!*        <td>*!/*/}
+                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
+                                {/*        /!*                   name={item.id + '.audio'}*!/*/}
+                                {/*        /!*                   value={item.audio}*!/*/}
+                                {/*        /!*            />*!/*/}
+                                {/*        /!*        </td>*!/*/}
+                                {/*        /!*        <td>*!/*/}
+                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
+                                {/*        /!*                   name={item.id + '.picture'}*!/*/}
+                                {/*        /!*                   value={item.picture}*!/*/}
+                                {/*        /!*            />*!/*/}
+                                {/*        /!*        </td>*!/*/}
+                                {/*        /!*        <td>*!/*/}
+                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
+                                {/*        /!*                   name={item.id + '.group_thread'}*!/*/}
+                                {/*        /!*                   value={item.group_thread}*!/*/}
+                                {/*        /!*            />*!/*/}
+                                {/*        /!*        </td>*!/*/}
+                                {/*        /!*        <td>*!/*/}
+                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
+                                {/*        /!*                   name={item.id + '.thread'}*!/*/}
+                                {/*        /!*                   value={item.thread}*!/*/}
+                                {/*        /!*            />*!/*/}
+                                {/*        /!*        </td>*!/*/}
+                                {/*        /!*        <td>*!/*/}
+                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
+                                {/*        /!*                   name={item.id + '.answerA'}*!/*/}
+                                {/*        /!*                   value={item.answerA}*!/*/}
+                                {/*        /!*            />*!/*/}
+                                {/*        /!*        </td>*!/*/}
+                                {/*        /!*        <td>*!/*/}
+                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
+                                {/*        /!*                   name={item.id + '.answerB'}*!/*/}
+                                {/*        /!*                   value={item.answerB}*!/*/}
+                                {/*        /!*            />*!/*/}
+                                {/*        /!*        </td>*!/*/}
+                                {/*        /!*        <td>*!/*/}
+                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
+                                {/*        /!*                   name={item.id + '.answerC'}*!/*/}
+                                {/*        /!*                   value={item.answerC}*!/*/}
+                                {/*        /!*            />*!/*/}
+                                {/*        /!*        </td>*!/*/}
+                                {/*        /!*        <td>*!/*/}
+                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
+                                {/*        /!*                   name={item.id + '.answerD'}*!/*/}
+                                {/*        /!*                   value={item.answerD}*!/*/}
+                                {/*        /!*            />*!/*/}
+                                {/*        /!*        </td>*!/*/}
+                                {/*        /!*        <td>*!/*/}
+                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
+                                {/*        /!*                   name={item.id + '.corectAnswer'}*!/*/}
+                                {/*        /!*                   value={item.corectAnswer}*!/*/}
+                                {/*        /!*            />*!/*/}
+                                {/*        /!*        </td>*!/*/}
 
-                                        {/*    </tr>*/}
-                                        {/*)}*/}
-                                        {/*</tbody>*/}
+                                {/*        /!*    </tr>*!/*/}
+                                {/*        /!*)}*!/*/}
+                                {/*        /!*</tbody>*!/*/}
 
-                                    </table>
-                                </div>
+                                {/*    </table>*/}
+                                {/*</div>*/}
                             </div>
                         </div>
                     </div>

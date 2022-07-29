@@ -13,6 +13,7 @@ import DashBoardsComponent from "./components/Admin/DashBoardsComponent";
 import AccountsManagementComponent from "./components/Admin/AccountsManagementComponent";
 import ExamsManagementComponent from "./components/Admin/ExamsManagementComponent";
 import EditExamComponent from "./components/Admin/EditExamComponent";
+import QuestionsManagement from "./components/Admin/QuestionsManagement";
 
 function App() {
     let checkLogin = sessionStorage.getItem('token') === null ? false : true;
@@ -45,6 +46,7 @@ function App() {
                         <Route path="accounts" element={<AccountsManagementComponent/>}/>
                         <Route path="examsManagement" element={<ExamsManagementComponent/>}/>
                         <Route path="examsManagement/:id" element={<EditExamComponent/>}/>
+                        <Route path="questionsManagement" element={<QuestionsManagement/>}/>
                     </Route>
                     <Route path="*" element={<NoPage/>}/>
                 </Route>

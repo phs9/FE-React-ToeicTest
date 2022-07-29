@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {Modal} from "react-bootstrap";
-import MyAlert from "../MyAlert";
 import {HTTP} from "../../http-common";
 
 window.editID = 0;

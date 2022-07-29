@@ -130,6 +130,12 @@ export default function Admin() {
                                                         <span className="align-middle">Quản lý đề thi</span>
                                                     </a>
                                                 </li>
+                                                <li className={"sidebar-item " + (url === (id === undefined ? '/admin/questionsManagement' : '/admin/questionsManagement/' + id) ? "active" : "")}>
+                                                    <a className="sidebar-link" onClick={() => navigate('/admin/questionsManagement')}>
+                                                        <Briefcase/>
+                                                        <span className="align-middle">Quản lý câu hỏi</span>
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
