@@ -14,6 +14,7 @@ import AccountsManagementComponent from "./components/Admin/AccountsManagementCo
 import ExamsManagementComponent from "./components/Admin/ExamsManagementComponent";
 import EditExamComponent from "./components/Admin/EditExamComponent";
 import QuestionsManagement from "./components/Admin/QuestionsManagement";
+import FilesManagement from "./components/Admin/FilesManagement";
 
 function App() {
     let checkLogin = sessionStorage.getItem('token') === null ? false : true;
@@ -47,6 +48,7 @@ function App() {
                         <Route path="examsManagement" element={<ExamsManagementComponent/>}/>
                         <Route path="examsManagement/:id" element={<EditExamComponent/>}/>
                         <Route path="questionsManagement" element={<QuestionsManagement/>}/>
+                        <Route path="filesManagement" element={<FilesManagement/>}/>
                     </Route>
                     <Route path="*" element={<NoPage/>}/>
                 </Route>

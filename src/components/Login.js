@@ -33,8 +33,8 @@ export default function Login() {
             sessionStorage.setItem('role', res.data.roles);
             sessionStorage.setItem('email', res.data.email);
             sessionStorage.setItem('name', res.data.name);
-            window.location.reload();
             loginNavigate();
+            window.location.reload();
 
         })
         //navigate('/exam');

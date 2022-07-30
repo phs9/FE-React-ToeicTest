@@ -49,9 +49,33 @@ export default function QuestionsManagement() {
         })
     }
 
+    let addQnum = null;
+
+    function CreateQTable() {
+        console.log(addQnum);
+        let objArr = [
+            {
+                thread: null,
+                answerA: null,
+                answerB: null,
+                answerC: null,
+                answerD: null,
+                corectAnswer: null,
+                part: 0,
+                group: null,
+                audio: null,
+                picture: null,
+                group_thread: null
+            }]
+        let tmpArr = [];
+        for (let i = 0; i < addQnum; i++) tmpArr = [...tmpArr, ...objArr];
+        getQuestions(tmpArr);
+        console.log(questions);
+    }
 
     return (
         <>
+            <UploadModal/>
             <EditQuestionConfirmModal saveEditQ={SaveEditedQuestion}/>
             <DeleteConfirmModal DeleteFunction={DeleteQuestion}/>
             <div className="container-fluid p-0">
@@ -71,13 +95,17 @@ export default function QuestionsManagement() {
                                         alignItems: "center"
                                     }}>
                                         <h4>Số câu hỏi: {questions.length}</h4>
+                                        <input className="form-control form-control-lg" type="number"
+                                               name={'addQnum'}
+                                               value={addQnum} placeholder="Nhập số câu muốn thêm"
+                                               onChange={(e) => {
+                                                   addQnum = e.target.value
+                                               }}
+                                        />
+                                        <button className="btn btn-primary" onClick={CreateQTable}>Tạo bảng</button>
+
                                     </div>
-                                    <div className="col-4" style={{
-                                        display: "flex",
-                                        justifyContent: "space-evenly",
-                                        flexDirection: "column",
-                                        alignItems: "center"
-                                    }}></div>
+                                    <div className="col-4"></div>
                                     <div className="col-4" style={{
                                         display: "flex",
                                         justifyContent: "space-evenly",
@@ -89,7 +117,7 @@ export default function QuestionsManagement() {
                                             window.ShowEditQModal();
                                         }}>Lưu
                                         </button>
-                                        <br/>
+
                                         <button className="btn btn-secondary" onClick={() => {
                                             getData();
                                         }}>Đặt lại

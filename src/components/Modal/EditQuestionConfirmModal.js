@@ -29,7 +29,10 @@ export default function EditQuestionConfirmModal(props) {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <button className="btn btn-primary" onClick={props.saveEditQ}>
+                    <button className="btn btn-primary" onClick={()=>{
+                        props.saveEditQ();
+                        handleClose();
+                    }}>
                         Lưu
                     </button>
                     <button className="btn btn-secondary" onClick={handleClose}>
