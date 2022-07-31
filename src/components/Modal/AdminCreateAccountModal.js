@@ -50,16 +50,20 @@ export default function AdminCreateAccountModal(props) {
         if (window.editID === 0) {
             HTTP.post('/admin/account', account).then((res) => {
                 console.log(res.data);
+                window.ShowAlert('success', 'Tạo tài khoản thành công');
                 props.Reload();
             }).catch((error) => {
-                console.log(error)
+                console.log(error);
+                window.ShowAlert('danger', 'Tạo tài khoản không thành công');
             })
         } else {
             HTTP.put('/admin/account/' +account.id, account).then((res) => {
                 console.log(res.data);
+                window.ShowAlert('success', 'Sửa thông tin tài khoản thành công');
                 props.Reload();
             }).catch((error) => {
-                console.log(error)
+                console.log(error);
+                window.ShowAlert('danger', 'Sửa thông tin tài khoản không thành công');
             })
         }
     }

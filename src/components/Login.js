@@ -36,6 +36,9 @@ export default function Login() {
             loginNavigate();
             window.location.reload();
 
+        }).catch((error)=>{
+            console.log(error);
+            window.ShowAlert('danger','Sai tài khoản hoặc mật khẩu');
         })
         //navigate('/exam');
     }
@@ -51,7 +54,7 @@ export default function Login() {
                                 <div className="text-center mt-4">
                                     <h1 className="h2">Welcome</h1>
                                     <p className="lead">
-                                        Sign in to your account to continue
+                                         Đăng nhập để tiếp tục
                                     </p>
                                 </div>
                                 <div className="card">
@@ -65,15 +68,15 @@ export default function Login() {
                                                 <div className="mb-3">
                                                     <label className="form-label">Email</label>
                                                     <input className="form-control form-control-lg" type="email"
-                                                           name="email" placeholder="Enter your email"
+                                                           name="email" placeholder="Nhập Email"
                                                            onChange={(e) => {
                                                                uid = e.target.value
                                                            }}/>
                                                 </div>
                                                 <div className="mb-3">
-                                                    <label className="form-label">Password</label>
+                                                    <label className="form-label">Mật khẩu</label>
                                                     <input className="form-control form-control-lg" type="password"
-                                                           name="password" placeholder="Enter your password"
+                                                           name="password" placeholder="Nhập mật khẩu"
                                                            onChange={(e) => {
                                                                pass = e.target.value
                                                            }}/>
@@ -84,9 +87,10 @@ export default function Login() {
                                                 <div className="text-center mt-3">
                                                     {/*<a href="index.html" className="btn btn-lg btn-primary">Sign in</a>*/}
                                                     <button type="submit" className="btn btn-lg btn-primary"
-                                                            onClick={login}>Sign in
+                                                            onClick={login}>Đăng nhập
                                                     </button>
                                                 </div>
+                                                <div>Chưa có tài khoản? <a style={{color:"blue", textDecoration:"underline"}} onClick={()=>{navigate('/register')}}>Đăng ký</a></div>
                                             </form>
                                         </div>
                                     </div>

@@ -25,16 +25,20 @@ export default function ExamsManagementComponent() {
         if (allQ === false) {
             HTTP.delete('/admin/exam/' + id).then((res) => {
                 console.log(res.data);
+                window.ShowAlert('success', 'Xoá bài thi thành công');
                 getData();
             }).catch((error) => {
-                console.log(error)
+                console.log(error);
+                window.ShowAlert('danger', 'Xoá bài thi không thành công');
             })
         } else {
             HTTP.delete('/admin/examQ/' + id).then((res) => {
                 console.log(res.data);
+                window.ShowAlert('success', 'Xoá bài thi và câu hỏi thành công');
                 getData();
             }).catch((error) => {
-                console.log(error)
+                console.log(error);
+                window.ShowAlert('danger', 'Xoá bài thi và câu hỏi không thành công');
             })
         }
     }

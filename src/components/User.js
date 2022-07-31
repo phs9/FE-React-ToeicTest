@@ -13,7 +13,9 @@ import {
 
 export default function User() {
     const [sideBarToggle, setSideBar] = useState(true);
-    window.HideSideBar = ()=>{setSideBar(false)};
+    window.HideSideBar = () => {
+        setSideBar(false)
+    };
     const [accountMenuToggle, setAccMenu] = useState(false);
     const [url, setUrl] = useState();
     const {id} = useParams();
@@ -71,7 +73,9 @@ export default function User() {
                                 <div
                                     className={'dropdown-menu dropdown-menu-end ' + (accountMenuToggle ? 'show' : '')}
                                     style={{left: "auto", right: 0}}>
-                                    <a className="dropdown-item" href="pages-profile.html">
+                                    <a className="dropdown-item" onClick={() => {
+                                        navigate('/accInfo')
+                                    }}>
                                         <IconUser height="18" width="18" strokeWidth="2"
                                                   style={{marginRight: 5}}></IconUser>
                                         Thông tin tài khoản</a>
@@ -80,7 +84,7 @@ export default function User() {
                                         <Lock height="18" width="18" strokeWidth="2"
                                               style={{marginRight: 5}}></Lock>
                                         Đổi mật khẩu</a>
-                                    <a className="dropdown-item" >
+                                    <a className="dropdown-item">
                                         <HelpCircle height="18" width="18" strokeWidth="2"
                                                     style={{marginRight: 5}}></HelpCircle>
                                         Trợ giúp</a>
@@ -116,7 +120,7 @@ export default function User() {
                                                         <span className="align-middle">Trang chủ</span>
                                                     </a>
                                                 </li>
-                                                <li className={"sidebar-item " + (url === (id===undefined?'/exam':'/exam/'+id) ? "active" : "")}>
+                                                <li className={"sidebar-item " + (url === (id === undefined ? '/exam' : '/exam/' + id) ? "active" : "")}>
                                                     <a className="sidebar-link" onClick={() => navigate('/exam')}>
                                                         <Edit/>
                                                         <span className="align-middle">Thi thử</span>
@@ -140,7 +144,7 @@ export default function User() {
                     </div>
                 </nav>
                 <div className="main">
-                    <main className="content" style={{marginTop: 50}}>
+                    <main className="content" style={{marginTop: 50, overflowY:"scroll"}}>
 
                         <Outlet/>
                     </main>
@@ -150,23 +154,23 @@ export default function User() {
                                 <div className="col-6 text-start">
                                     <p className="mb-0">
                                         <a className="text-muted" href="/home"
-                                           ><strong>Online Toeic Test</strong></a> ©
+                                        ><strong>Online Toeic Test</strong></a> ©
                                     </p>
                                 </div>
                                 <div className="col-6 text-end">
                                     <ul className="list-inline">
                                         <li className="list-inline-item">
-                                            <a className="text-muted"  >Trợ
+                                            <a className="text-muted">Trợ
                                                 giúp
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
                                             <a className="text-muted"
-                                               >Quyền riêng tư</a>
+                                            >Quyền riêng tư</a>
                                         </li>
                                         <li className="list-inline-item">
                                             <a className="text-muted"
-                                               >Điều khoản sử dụng</a>
+                                            >Điều khoản sử dụng</a>
                                         </li>
                                     </ul>
                                 </div>

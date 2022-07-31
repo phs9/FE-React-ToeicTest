@@ -47,7 +47,7 @@ export default function RightBar() {
                                         <button className="btn btn-primary" onClick={window.SubmitModalShowFnc}>Submit
                                         </button>
                                         <hr/>
-                                            <QuestBookMark/>
+                                        <QuestBookMark/>
                                     </div>
                                 </div>
                             </div>
@@ -70,20 +70,27 @@ function TimeCount() {
         setM(window.ExamTime);
         setS(0);
 
-    }, [window.ExamTime])
+    }, [window.ExamTime]);
+
 
     useEffect(() => {
         const intervalId = setInterval(() => {
+            if (minute === 0 && second === 0) {
+                window.ShowAlert('warning', 'Đã hết thời gian làm bài, hãy nộp bài');
+            }
             if (second > 0) setS(second - 1);
             if (second === 0) {
-                if (minute === 0) clearInterval()
-                else {
+                if (minute === 0) {
+                    clearInterval();
+                } else {
                     setM(minute - 1);
                     setS(59);
                 }
             }
         }, 1000)
-        return () => clearInterval(intervalId);
+        return () => {
+            clearInterval(intervalId);
+        }
     }, [minute, second]);
 
     return (
@@ -115,7 +122,15 @@ function QuestBookMark() {
 
     return (
         <>
-            <div className="QB" style={{overflowY: "auto", height: "60vh", alignContent:"start", maxWidth: "418", display:"flex", justifyContent:"space-between", flexWrap:"wrap"}}>
+            <div className="QB" style={{
+                overflowY: "auto",
+                height: "60vh",
+                alignContent: "start",
+                maxWidth: "418",
+                display: "flex",
+                justifyContent: "space-between",
+                flexWrap: "wrap"
+            }}>
                 {answer.filter((item, index) => {
                     if (window.sessionStorage.getItem('examState') === 'L') return index < 100
                     else if (window.sessionStorage.getItem('examState') === 'R') return index > 99
@@ -123,7 +138,7 @@ function QuestBookMark() {
                 }).map((bt, index) => {
                         ++quesIndex;
                         return (
-                            <div key={index} style={{display:"inline-block", flex:"0 0 20%", paddingTop:5}}>
+                            <div key={index} style={{display: "inline-block", flex: "0 0 20%", paddingTop: 5}}>
                                 <button onClick={window.questBookMarkFnc(quesIndex)}
                                         style={{
                                             minWidth: 40,

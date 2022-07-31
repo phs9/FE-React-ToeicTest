@@ -45,15 +45,19 @@ export default function EditExamComponent() {
         if (id === '_add') {
             HTTP.post('/admin/createExam', exam).then((res) => {
                 console.log(res.data);
+                window.ShowAlert('success', 'Thêm bài thi thành công');
                 navigate('/admin/examsManagement/' + res.data);
             }).catch((error) => {
-                console.log(error)
+                console.log(error);
+                window.ShowAlert('danger', 'Thêm bài thi không thành công');
             })
         } else {
             HTTP.put('/admin/updateExam/' + id, exam).then((res) => {
                 console.log(res.data);
+                window.ShowAlert('success', 'Sửa đổi bài thi thành công');
             }).catch((error) => {
-                console.log(error)
+                console.log(error);
+                window.ShowAlert('danger', 'Sửa bài thi không thành công');
             })
         }
     }
@@ -66,9 +70,11 @@ export default function EditExamComponent() {
         console.log(questionIDsFinal);
         HTTP.post('/admin/updateExamRefQ/' + exam.id, questionIDsFinal).then((res) => {
             console.log(res);
+            window.ShowAlert('success', 'Sửa danh sách câu hỏi cho bài thi thành công');
             getData();
         }).catch((error) => {
-            console.log(error)
+            console.log(error);
+            window.ShowAlert('danger', 'Sửa danh sách câu hỏi không thành công');
         })
 
     }
@@ -215,111 +221,6 @@ export default function EditExamComponent() {
                                         </div>
                                     </div>
                                 </div>
-                                {/*<div className="tableFixHead">*/}
-                                {/*    <table className="table Qtable table-bordered caption-top"*/}
-                                {/*           style={{textAlign: "center", verticalAlign: "middle"}}>*/}
-                                {/*        <caption>Danh sách câu hỏi</caption>*/}
-                                {/*        <thead style={{verticalAlign: "middle"}}>*/}
-                                {/*        <tr>*/}
-                                {/*            <th scope="col">Chọn</th>*/}
-                                {/*            <th scope="col">#</th>*/}
-                                {/*            <th scope="col">ID</th>*/}
-                                {/*            <th scope="col">Part</th>*/}
-                                {/*            <th scope="col">Group</th>*/}
-                                {/*            <th scope="col">Audio</th>*/}
-                                {/*            <th scope="col">Picture</th>*/}
-                                {/*            <th scope="col">Group thread</th>*/}
-                                {/*            <th scope="col">Thread</th>*/}
-                                {/*            <th scope="col">Answer A</th>*/}
-                                {/*            <th scope="col">Answer B</th>*/}
-                                {/*            <th scope="col">Answer C</th>*/}
-                                {/*            <th scope="col">Answer D</th>*/}
-                                {/*            <th scope="col">Correct answer</th>*/}
-
-                                {/*        </tr>*/}
-                                {/*        </thead>*/}
-
-                                {/*        /!*<tbody>*!/*/}
-                                {/*        /!*{exam.questionsFull.map((item, index) =>*!/*/}
-                                {/*        /!*    <tr key={index}>*!/*/}
-                                {/*        /!*        <td>*!/*/}
-
-                                {/*        /!*        </td>*!/*/}
-                                {/*        /!*        <td>{index + 1}</td>*!/*/}
-                                {/*        /!*        <td>{item.id}</td>*!/*/}
-                                {/*        /!*        <td>*!/*/}
-                                {/*        /!*            <input className="form-control1 form-control-lg1" type="number"*!/*/}
-                                {/*        /!*                   name={item.id + '.part'}*!/*/}
-                                {/*        /!*                   value={item.part}*!/*/}
-                                {/*        /!*            />*!/*/}
-                                {/*        /!*        </td>*!/*/}
-                                {/*        /!*        <td>*!/*/}
-                                {/*        /!*            <input className="form-control1 form-control-lg1" type="number"*!/*/}
-                                {/*        /!*                   name={item.id + '.group'}*!/*/}
-                                {/*        /!*                   value={item.group}*!/*/}
-                                {/*        /!*            />*!/*/}
-                                {/*        /!*        </td>*!/*/}
-                                {/*        /!*        <td>*!/*/}
-                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
-                                {/*        /!*                   name={item.id + '.audio'}*!/*/}
-                                {/*        /!*                   value={item.audio}*!/*/}
-                                {/*        /!*            />*!/*/}
-                                {/*        /!*        </td>*!/*/}
-                                {/*        /!*        <td>*!/*/}
-                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
-                                {/*        /!*                   name={item.id + '.picture'}*!/*/}
-                                {/*        /!*                   value={item.picture}*!/*/}
-                                {/*        /!*            />*!/*/}
-                                {/*        /!*        </td>*!/*/}
-                                {/*        /!*        <td>*!/*/}
-                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
-                                {/*        /!*                   name={item.id + '.group_thread'}*!/*/}
-                                {/*        /!*                   value={item.group_thread}*!/*/}
-                                {/*        /!*            />*!/*/}
-                                {/*        /!*        </td>*!/*/}
-                                {/*        /!*        <td>*!/*/}
-                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
-                                {/*        /!*                   name={item.id + '.thread'}*!/*/}
-                                {/*        /!*                   value={item.thread}*!/*/}
-                                {/*        /!*            />*!/*/}
-                                {/*        /!*        </td>*!/*/}
-                                {/*        /!*        <td>*!/*/}
-                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
-                                {/*        /!*                   name={item.id + '.answerA'}*!/*/}
-                                {/*        /!*                   value={item.answerA}*!/*/}
-                                {/*        /!*            />*!/*/}
-                                {/*        /!*        </td>*!/*/}
-                                {/*        /!*        <td>*!/*/}
-                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
-                                {/*        /!*                   name={item.id + '.answerB'}*!/*/}
-                                {/*        /!*                   value={item.answerB}*!/*/}
-                                {/*        /!*            />*!/*/}
-                                {/*        /!*        </td>*!/*/}
-                                {/*        /!*        <td>*!/*/}
-                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
-                                {/*        /!*                   name={item.id + '.answerC'}*!/*/}
-                                {/*        /!*                   value={item.answerC}*!/*/}
-                                {/*        /!*            />*!/*/}
-                                {/*        /!*        </td>*!/*/}
-                                {/*        /!*        <td>*!/*/}
-                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
-                                {/*        /!*                   name={item.id + '.answerD'}*!/*/}
-                                {/*        /!*                   value={item.answerD}*!/*/}
-                                {/*        /!*            />*!/*/}
-                                {/*        /!*        </td>*!/*/}
-                                {/*        /!*        <td>*!/*/}
-                                {/*        /!*            <input className="form-control1 form-control-lg1" type="text"*!/*/}
-                                {/*        /!*                   name={item.id + '.corectAnswer'}*!/*/}
-                                {/*        /!*                   value={item.corectAnswer}*!/*/}
-                                {/*        /!*            />*!/*/}
-                                {/*        /!*        </td>*!/*/}
-
-                                {/*        /!*    </tr>*!/*/}
-                                {/*        /!*)}*!/*/}
-                                {/*        /!*</tbody>*!/*/}
-
-                                {/*    </table>*/}
-                                {/*</div>*/}
                             </div>
                         </div>
                     </div>

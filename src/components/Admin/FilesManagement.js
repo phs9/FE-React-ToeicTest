@@ -37,7 +37,8 @@ export default function FilesManagement() {
     }
 
     function Picture(props) {
-        if (props.fileName != null) return <img width="400" height="400" style={{maxWidth: "80%"}} src={httpFile + '/picture/' + props.fileName}
+        if (props.fileName != null) return <img width="400" height="400" style={{maxWidth: "80%"}}
+                                                src={httpFile + '/picture/' + props.fileName}
                                                 alt={props.fileName}></img>
     }
 
@@ -54,9 +55,11 @@ export default function FilesManagement() {
 
         HTTP.post('/admin/upload/audio', formData).then((res) => {
             console.log(res.data);
+            window.ShowAlert('success', 'Upload file nghe thành công');
             getDataAudio();
         }).catch((error) => {
-            console.log(error)
+            console.log(error);
+            window.ShowAlert('danger', 'Upload file nghe không thành công');
         })
     }
 
@@ -73,25 +76,29 @@ export default function FilesManagement() {
 
         HTTP.post('/admin/upload/picture', formData2).then((res) => {
             console.log(res.data);
+            window.ShowAlert('success', 'Upload file ảnh thành công');
             getDataPicture();
         }).catch((error) => {
-            console.log(error)
+            console.log(error);
+            window.ShowAlert('success', 'Upload file ảnh không thành công');
         })
     }
 
     function DeleteFile(filePathName) {
         HTTP.delete('/admin/file/' + filePathName).then((res) => {
             console.log(res.data);
+            window.ShowAlert('success', 'Xoá file thành công');
             getDataAudio();
             getDataPicture();
         }).catch((error) => {
-            console.log(error)
+            console.log(error);
+            window.ShowAlert('danger', 'Xoá file không thành công');
         })
     }
 
     const popoverA = (filename) => {
         return (
-            <Popover id="popover-basic" style={{maxWidth:"100%"}}>
+            <Popover id="popover-basic" style={{maxWidth: "100%"}}>
                 <Popover.Header as="h3">Xem trước</Popover.Header>
                 <Popover.Body>
                     <Audio fileName={filename}/>
@@ -100,12 +107,50 @@ export default function FilesManagement() {
         )
     }
 
-    const popoverB = (filename) => {
+    const popoverP = (filename) => {
         return (
-            <Popover id="popover-basic" style={{maxWidth:"100%"}}>
+            <Popover id="popover-basic" style={{maxWidth: "100%"}}>
                 <Popover.Header as="h3">Xem trước</Popover.Header>
                 <Popover.Body>
                     <Picture fileName={filename}/>
+                </Popover.Body>
+            </Popover>
+        )
+    }
+
+    const popoverEdit = (folder, filename) => {
+        let newName = filename;
+
+        function ChangeName(e) {
+            e.preventDefault();
+            console.log(newName);
+            HTTP.post('/admin/renameFile/' + folder + '/' + filename, newName).then((res) => {
+                console.log(res.data);
+                window.ShowAlert('success', 'Đổi tên file thành công');
+                getDataAudio();
+                getDataPicture();
+            }).catch((error) => {
+                console.log(error);
+                window.ShowAlert('danger', 'Đổi tên file không thành công');
+            })
+        }
+
+        return (
+            <Popover id="popover-basic" style={{width: "100%"}}>
+                <Popover.Header as="h3">Đổi tên</Popover.Header>
+                <Popover.Body>
+                    <form onSubmit={ChangeName}>
+                        <div className="input-group mb-3">
+                            <input className="form-control" type="text"
+                                   placeholder="Nhập tên mới"
+                                   defaultValue={filename}
+                                   onChange={(e) => {
+                                       newName = e.target.value
+                                   }}
+                            />
+                            <button className="btn btn-success" type="submit">Lưu</button>
+                        </div>
+                    </form>
                 </Popover.Body>
             </Popover>
         )
@@ -163,7 +208,10 @@ export default function FilesManagement() {
                                                                     overlay={popoverA(item.filename)}>
                                                         <Eye style={{cursor: "pointer"}}/>
                                                     </OverlayTrigger>
-                                                    <Edit2 style={{cursor: "pointer"}}/>
+                                                    <OverlayTrigger trigger="click" placement="left"
+                                                                    overlay={popoverEdit('audio', item.filename)}>
+                                                        <Edit2 style={{cursor: "pointer"}}/>
+                                                    </OverlayTrigger>
                                                     <DeleteIcon style={{cursor: "pointer"}} color="red"
                                                                 onClick={() => {
                                                                     window.deleteObj = {
@@ -217,10 +265,13 @@ export default function FilesManagement() {
                                                 <td>{(item.size / 1024).toFixed(2)} KB</td>
                                                 <td style={{display: "flex", justifyContent: "space-between"}}>
                                                     <OverlayTrigger trigger="click" placement="left"
-                                                                    overlay={popoverB(item.filename)}>
+                                                                    overlay={popoverP(item.filename)}>
                                                         <Eye style={{cursor: "pointer"}}/>
                                                     </OverlayTrigger>
-                                                    <Edit2 style={{cursor: "pointer"}}/>
+                                                    <OverlayTrigger trigger="click" placement="left"
+                                                                    overlay={popoverEdit('picture', item.filename)}>
+                                                        <Edit2 style={{cursor: "pointer"}}/>
+                                                    </OverlayTrigger>
                                                     <DeleteIcon style={{cursor: "pointer"}} color="red"
                                                                 onClick={() => {
                                                                     window.deleteObj = {

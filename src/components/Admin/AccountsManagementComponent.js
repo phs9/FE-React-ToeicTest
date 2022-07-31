@@ -24,9 +24,11 @@ export default function AccountsManagementComponent() {
     function DeleteAccount(id) {
         HTTP.delete('/admin/account/' + id).then((res) => {
             console.log(res.data);
+            window.ShowAlert('success', 'Xoá thành công');
             getData();
         }).catch((error) => {
-            console.log(error)
+            console.log(error);
+            window.ShowAlert('danger', 'Xoá không thành công');
         })
     }
 

@@ -71,7 +71,9 @@ export default function Admin() {
                                 <div
                                     className={'dropdown-menu dropdown-menu-end ' + (accountMenuToggle ? 'show' : '')}
                                     style={{left: "auto", right: 0}}>
-                                    <a className="dropdown-item" href="pages-profile.html">
+                                    <a className="dropdown-item" onClick={() => {
+                                        navigate('/admin/accInfo')
+                                    }}>
                                         <IconUser height="18" width="18" strokeWidth="2"
                                                   style={{marginRight: 5}}></IconUser>
                                         Thông tin tài khoản</a>
@@ -80,7 +82,7 @@ export default function Admin() {
                                         <Lock height="18" width="18" strokeWidth="2"
                                               style={{marginRight: 5}}></Lock>
                                         Đổi mật khẩu</a>
-                                    <a className="dropdown-item" >
+                                    <a className="dropdown-item">
                                         <HelpCircle height="18" width="18" strokeWidth="2"
                                                     style={{marginRight: 5}}></HelpCircle>
                                         Trợ giúp</a>
@@ -111,7 +113,8 @@ export default function Admin() {
                                                     Pages
                                                 </li>
                                                 <li className={"sidebar-item " + (url === '/admin/dashboards' ? "active" : "")}>
-                                                    <a className="sidebar-link" onClick={() => navigate('/admin/dashboards')}>
+                                                    <a className="sidebar-link"
+                                                       onClick={() => navigate('/admin/dashboards')}>
                                                         <IconHome/>
                                                         <span className="align-middle">Dashboards</span>
                                                     </a>
@@ -125,19 +128,22 @@ export default function Admin() {
                                                     </a>
                                                 </li>
                                                 <li className={"sidebar-item " + (url === (id === undefined ? '/admin/examsManagement' : '/admin/examsManagement/' + id) ? "active" : "")}>
-                                                    <a className="sidebar-link" onClick={() => navigate('/admin/examsManagement')}>
+                                                    <a className="sidebar-link"
+                                                       onClick={() => navigate('/admin/examsManagement')}>
                                                         <Briefcase/>
                                                         <span className="align-middle">Quản lý đề thi</span>
                                                     </a>
                                                 </li>
                                                 <li className={"sidebar-item " + (url === (id === undefined ? '/admin/questionsManagement' : '/admin/questionsManagement/' + id) ? "active" : "")}>
-                                                    <a className="sidebar-link" onClick={() => navigate('/admin/questionsManagement')}>
+                                                    <a className="sidebar-link"
+                                                       onClick={() => navigate('/admin/questionsManagement')}>
                                                         <Briefcase/>
                                                         <span className="align-middle">Quản lý câu hỏi</span>
                                                     </a>
                                                 </li>
                                                 <li className={"sidebar-item " + (url === (id === undefined ? '/admin/filesManagement' : '/admin/filesManagement/' + id) ? "active" : "")}>
-                                                    <a className="sidebar-link" onClick={() => navigate('/admin/filesManagement')}>
+                                                    <a className="sidebar-link"
+                                                       onClick={() => navigate('/admin/filesManagement')}>
                                                         <Briefcase/>
                                                         <span className="align-middle">Quản lý file</span>
                                                     </a>
@@ -152,7 +158,7 @@ export default function Admin() {
                     </div>
                 </nav>
                 <div className="main">
-                    <main className="content" style={{marginTop: 50}}>
+                    <main className="content" style={{marginTop: 50, overflowY:"scroll"}}>
 
                         <Outlet/>
                     </main>
@@ -162,23 +168,23 @@ export default function Admin() {
                                 <div className="col-6 text-start">
                                     <p className="mb-0">
                                         <a className="text-muted" href="/admin"
-                                           ><strong>Online Toeic Test</strong></a> ©
+                                        ><strong>Online Toeic Test</strong></a> ©
                                     </p>
                                 </div>
                                 <div className="col-6 text-end">
                                     <ul className="list-inline">
                                         <li className="list-inline-item">
-                                            <a className="text-muted"  >Trợ
+                                            <a className="text-muted">Trợ
                                                 giúp
                                             </a>
                                         </li>
                                         <li className="list-inline-item">
                                             <a className="text-muted"
-                                               >Quyền riêng tư</a>
+                                            >Quyền riêng tư</a>
                                         </li>
                                         <li className="list-inline-item">
                                             <a className="text-muted"
-                                               >Điều khoản sử dụng</a>
+                                            >Điều khoản sử dụng</a>
                                         </li>
                                     </ul>
                                 </div>

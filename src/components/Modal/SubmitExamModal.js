@@ -12,10 +12,11 @@ export default function SubmitExamModal(props) {
 
     window.SubmitModalShowFnc = handleShow;
 
-    const submitModal = () => {
+    function submitModal(){
         if (window.submitState === 0) props.submitFunction();
 
         if (window.submitState === 1) {
+            window.ShowAlert('primary', 'Chuyển sang phần thi còn lại');
             props.changeExam();
             window.submitState = 0;
             window.scrollTo(0,0);

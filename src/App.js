@@ -15,6 +15,9 @@ import ExamsManagementComponent from "./components/Admin/ExamsManagementComponen
 import EditExamComponent from "./components/Admin/EditExamComponent";
 import QuestionsManagement from "./components/Admin/QuestionsManagement";
 import FilesManagement from "./components/Admin/FilesManagement";
+import HomePage from "./components/User/HomePage";
+import Register from "./components/Register";
+import AccountInfo from "./components/AccountInfo";
 
 function App() {
     let checkLogin = sessionStorage.getItem('token') === null ? false : true;
@@ -33,14 +36,16 @@ function App() {
             <Routes>
                 <Route>
                     <Route path="/" element={<Login/>}/>
+                    <Route path="/register" element={<Register/>}/>
                 </Route>
                 <Route element={<PrivateOutlet/>}>
                     <Route element={<User/>}>
-                        <Route path="/home"/>
+                        <Route path="/home" element={<HomePage/>}/>
                         <Route path="/exam" element={<ListExamComponent/>}/>
                         <Route path="/exam/:id" element={<ExamTestComponent/>}/>
                         <Route path="/result" element={<ExamResult/>}/>
                         <Route path="/results" element={<ListResultComponent/>}/>
+                        <Route path="/accInfo" element={<AccountInfo/>}/>
                     </Route>
                     <Route path="/admin" element={<Admin/>}>
                         <Route path="dashboards" element={<DashBoardsComponent/>}/>
@@ -49,6 +54,7 @@ function App() {
                         <Route path="examsManagement/:id" element={<EditExamComponent/>}/>
                         <Route path="questionsManagement" element={<QuestionsManagement/>}/>
                         <Route path="filesManagement" element={<FilesManagement/>}/>
+                        <Route path="accInfo" element={<AccountInfo/>}/>
                     </Route>
                     <Route path="*" element={<NoPage/>}/>
                 </Route>

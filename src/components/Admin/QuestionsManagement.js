@@ -33,19 +33,23 @@ export default function QuestionsManagement() {
         //let tmp = questions.filter((ques) => changedListID.includes(ques.id) === true);
         HTTP.post('/admin/question', window.editQList).then((res) => {
             console.log(res.data);
+            window.ShowAlert('success', 'Cập nhật câu hỏi thành công');
             window.editQList = [];
             getData();
         }).catch((error) => {
-            console.log(error)
+            console.log(error);
+            window.ShowAlert('danger', 'Cập nhật câu hỏi không thành công');
         })
     }
 
     function DeleteQuestion(id) {
         HTTP.delete('/admin/question/' + id).then((res) => {
             console.log(res.data);
+            window.ShowAlert('success', 'Xoá câu hỏi thành công');
             getData();
         }).catch((error) => {
-            console.log(error)
+            console.log(error);
+            window.ShowAlert('danger', 'Xoá câu hỏi không thành công');
         })
     }
 
@@ -75,7 +79,6 @@ export default function QuestionsManagement() {
 
     return (
         <>
-            <UploadModal/>
             <EditQuestionConfirmModal saveEditQ={SaveEditedQuestion}/>
             <DeleteConfirmModal DeleteFunction={DeleteQuestion}/>
             <div className="container-fluid p-0">

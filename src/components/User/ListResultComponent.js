@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {HTTP} from "../../http-common";
+import {useNavigate} from "react-router-dom";
 
 
 export default function ListResultComponent() {
     const [results, getResults] = useState([]);
-
+    let navigate = useNavigate();
     useEffect(() => {
         HTTP.get('/user/history')
             .then((res) => {
@@ -62,18 +63,23 @@ export default function ListResultComponent() {
                                     })}
                                     </tbody>
                                 </table>
-                                <div>Xem bảng quy đổi điểm TOEIC <a
-                                    style={{color: "blue", textDecoration: "underline"}}>tại đây</a></div>
+                                <div>Xem bảng quy đổi điểm TOEIC <a onClick={() => {
+                                    navigate('/home');
+                                }}
+                                                                    style={{
+                                                                        color: "blue",
+                                                                        textDecoration: "underline"
+                                                                    }}>tại đây</a></div>
                                 <table className="table table-bordered caption-top"
                                        style={{textAlign: "center", verticalAlign: "middle"}}>
                                     <caption>Bài MINI TEST</caption>
                                     <thead style={{verticalAlign: "middle"}}>
                                     <tr>
-                                        <th scope="col" ></th>
-                                        <th scope="col" >Tên bài thi</th>
-                                        <th scope="col" >Ngày giờ thi</th>
-                                        <th scope="col" >Tổng số câu hỏi</th>
-                                        <th scope="col" >Kết quả</th>
+                                        <th scope="col"></th>
+                                        <th scope="col">Tên bài thi</th>
+                                        <th scope="col">Ngày giờ thi</th>
+                                        <th scope="col">Tổng số câu hỏi</th>
+                                        <th scope="col">Kết quả</th>
                                     </tr>
                                     </thead>
                                     <tbody>

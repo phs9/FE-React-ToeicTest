@@ -114,6 +114,7 @@ export default function ExamTestComponent() {
         window.DisablePrompt();
         HTTP.post("/user/exam/" + id, answer).then((res) => {
             console.log(res.data);
+            window.ShowAlert('success', 'Nộp bài thành công, xem kết quả trên giao diện');
             navigate('/result', {state: res.data});
             sessionStorage.removeItem('examState');
             window.submitState = 0;
