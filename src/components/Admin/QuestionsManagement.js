@@ -116,7 +116,7 @@ export default function QuestionsManagement() {
                                         alignItems: "center"
                                     }}>
                                         <button className="btn btn-primary" onClick={() => {
-                                            window.editQList = questions.filter((ques) => changedListID.includes(ques.id) === true);
+                                            window.editQList = questions.filter((ques,index) => changedListID.includes(index) === true);
                                             window.ShowEditQModal();
                                         }}>Lưu
                                         </button>
@@ -163,8 +163,8 @@ export default function QuestionsManagement() {
                                                            value={item.part} placeholder="NULL"
                                                            onChange={(e) => {
                                                                if (e.target.value === '') e.target.value = 0;
-                                                               getQuestions(current => current.map(obj => {
-                                                                   if (obj.id === item.id) {
+                                                               getQuestions(current => current.map((obj,idx) => {
+                                                                   if (idx === index) {
                                                                        return {
                                                                            ...obj,
                                                                            part: parseInt(e.target.value, 10)
@@ -172,8 +172,8 @@ export default function QuestionsManagement() {
                                                                    }
                                                                    return obj;
                                                                }))
-                                                               let tmp = [item.id];
-                                                               if (!changedListID.includes(item.id))
+                                                               let tmp = [index];
+                                                               if (!changedListID.includes(index))
                                                                    setChangeID([...changedListID, ...tmp])
                                                            }}
 
@@ -186,8 +186,8 @@ export default function QuestionsManagement() {
                                                            placeholder="NULL"
                                                            onChange={(e) => {
                                                                if (e.target.value === '') {
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                group: null
@@ -196,8 +196,8 @@ export default function QuestionsManagement() {
                                                                        return obj;
                                                                    }));
                                                                } else
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                group: parseInt(e.target.value, 10)
@@ -205,8 +205,8 @@ export default function QuestionsManagement() {
                                                                        }
                                                                        return obj;
                                                                    }))
-                                                               let tmp = [item.id];
-                                                               if (!changedListID.includes(item.id))
+                                                               let tmp = [index];
+                                                               if (!changedListID.includes(index))
                                                                    setChangeID([...changedListID, ...tmp])
                                                            }}
                                                     />
@@ -218,8 +218,8 @@ export default function QuestionsManagement() {
                                                            placeholder="NULL"
                                                            onChange={(e) => {
                                                                if (e.target.value === '') {
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                audio: null
@@ -237,8 +237,8 @@ export default function QuestionsManagement() {
                                                                        }
                                                                        return obj;
                                                                    }))
-                                                               let tmp = [item.id];
-                                                               if (!changedListID.includes(item.id))
+                                                               let tmp = [index];
+                                                               if (!changedListID.includes(index))
                                                                    setChangeID([...changedListID, ...tmp])
                                                            }}
                                                     />
@@ -250,8 +250,8 @@ export default function QuestionsManagement() {
                                                            placeholder="NULL"
                                                            onChange={(e) => {
                                                                if (e.target.value === '') {
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                picture: null
@@ -260,8 +260,8 @@ export default function QuestionsManagement() {
                                                                        return obj;
                                                                    }))
                                                                } else
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                picture: e.target.value
@@ -269,8 +269,8 @@ export default function QuestionsManagement() {
                                                                        }
                                                                        return obj;
                                                                    }))
-                                                               let tmp = [item.id];
-                                                               if (!changedListID.includes(item.id))
+                                                               let tmp = [index];
+                                                               if (!changedListID.includes(index))
                                                                    setChangeID([...changedListID, ...tmp])
                                                            }}
                                                     />
@@ -282,8 +282,8 @@ export default function QuestionsManagement() {
                                                            placeholder="NULL"
                                                            onChange={(e) => {
                                                                if (e.target.value === '') {
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                group_thread: null
@@ -292,8 +292,8 @@ export default function QuestionsManagement() {
                                                                        return obj;
                                                                    }))
                                                                } else
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                group_thread: e.target.value
@@ -301,8 +301,8 @@ export default function QuestionsManagement() {
                                                                        }
                                                                        return obj;
                                                                    }))
-                                                               let tmp = [item.id];
-                                                               if (!changedListID.includes(item.id))
+                                                               let tmp = [index];
+                                                               if (!changedListID.includes(index))
                                                                    setChangeID([...changedListID, ...tmp])
                                                            }}
                                                     />
@@ -314,8 +314,8 @@ export default function QuestionsManagement() {
                                                            placeholder="NULL"
                                                            onChange={(e) => {
                                                                if (e.target.value === '') {
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                thread: null
@@ -324,8 +324,8 @@ export default function QuestionsManagement() {
                                                                        return obj;
                                                                    }))
                                                                } else
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                thread: e.target.value
@@ -333,8 +333,8 @@ export default function QuestionsManagement() {
                                                                        }
                                                                        return obj;
                                                                    }))
-                                                               let tmp = [item.id];
-                                                               if (!changedListID.includes(item.id))
+                                                               let tmp = [index];
+                                                               if (!changedListID.includes(index))
                                                                    setChangeID([...changedListID, ...tmp])
                                                            }}
                                                     />
@@ -346,8 +346,8 @@ export default function QuestionsManagement() {
                                                            placeholder="NULL"
                                                            onChange={(e) => {
                                                                if (e.target.value === '') {
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                answerA: null
@@ -356,8 +356,8 @@ export default function QuestionsManagement() {
                                                                        return obj;
                                                                    }))
                                                                } else
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                answerA: e.target.value
@@ -365,8 +365,8 @@ export default function QuestionsManagement() {
                                                                        }
                                                                        return obj;
                                                                    }))
-                                                               let tmp = [item.id];
-                                                               if (!changedListID.includes(item.id))
+                                                               let tmp = [index];
+                                                               if (!changedListID.includes(index))
                                                                    setChangeID([...changedListID, ...tmp])
                                                            }}
                                                     />
@@ -378,8 +378,8 @@ export default function QuestionsManagement() {
                                                            placeholder="NULL"
                                                            onChange={(e) => {
                                                                if (e.target.value === '') {
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                answerB: null
@@ -388,8 +388,8 @@ export default function QuestionsManagement() {
                                                                        return obj;
                                                                    }))
                                                                } else
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                answerB: e.target.value
@@ -397,8 +397,8 @@ export default function QuestionsManagement() {
                                                                        }
                                                                        return obj;
                                                                    }))
-                                                               let tmp = [item.id];
-                                                               if (!changedListID.includes(item.id))
+                                                               let tmp = [index];
+                                                               if (!changedListID.includes(index))
                                                                    setChangeID([...changedListID, ...tmp])
                                                            }}
                                                     />
@@ -410,8 +410,8 @@ export default function QuestionsManagement() {
                                                            placeholder="NULL"
                                                            onChange={(e) => {
                                                                if (e.target.value === '') {
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                answerC: null
@@ -420,8 +420,8 @@ export default function QuestionsManagement() {
                                                                        return obj;
                                                                    }))
                                                                } else
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                answerC: e.target.value
@@ -429,8 +429,8 @@ export default function QuestionsManagement() {
                                                                        }
                                                                        return obj;
                                                                    }))
-                                                               let tmp = [item.id];
-                                                               if (!changedListID.includes(item.id))
+                                                               let tmp = [index];
+                                                               if (!changedListID.includes(index))
                                                                    setChangeID([...changedListID, ...tmp])
                                                            }}
                                                     />
@@ -442,8 +442,8 @@ export default function QuestionsManagement() {
                                                            placeholder="NULL"
                                                            onChange={(e) => {
                                                                if (e.target.value === '') {
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                answerD: null
@@ -452,8 +452,8 @@ export default function QuestionsManagement() {
                                                                        return obj;
                                                                    }))
                                                                } else
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                answerD: e.target.value
@@ -461,8 +461,8 @@ export default function QuestionsManagement() {
                                                                        }
                                                                        return obj;
                                                                    }))
-                                                               let tmp = [item.id];
-                                                               if (!changedListID.includes(item.id))
+                                                               let tmp = [index];
+                                                               if (!changedListID.includes(index))
                                                                    setChangeID([...changedListID, ...tmp])
                                                            }}
                                                     />
@@ -474,8 +474,8 @@ export default function QuestionsManagement() {
                                                            placeholder="NULL"
                                                            onChange={(e) => {
                                                                if (e.target.value === '') {
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                corectAnswer: null
@@ -484,8 +484,8 @@ export default function QuestionsManagement() {
                                                                        return obj;
                                                                    }))
                                                                } else
-                                                                   getQuestions(current => current.map(obj => {
-                                                                       if (obj.id === item.id) {
+                                                                   getQuestions(current => current.map((obj,idx) => {
+                                                                       if (idx === index) {
                                                                            return {
                                                                                ...obj,
                                                                                corectAnswer: e.target.value
@@ -493,8 +493,8 @@ export default function QuestionsManagement() {
                                                                        }
                                                                        return obj;
                                                                    }))
-                                                               let tmp = [item.id];
-                                                               if (!changedListID.includes(item.id))
+                                                               let tmp = [index];
+                                                               if (!changedListID.includes(index))
                                                                    setChangeID([...changedListID, ...tmp])
                                                            }}
                                                     />

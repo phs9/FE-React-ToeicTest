@@ -24,7 +24,7 @@ export default function Admin() {
     useEffect(() => {
         setUrl(location.pathname);
         console.log(url);
-    });
+    },[location]);
 
 
     function LogOut() {
@@ -80,7 +80,7 @@ export default function Admin() {
                                     <div className="dropdown-divider"/>
                                     <a className="dropdown-item"
                                        onClick={() => {
-                                           navigate('/changePassword')
+                                           navigate('/admin/changePassword')
                                        }}>
                                         <Lock height="18" width="18" strokeWidth="2"
                                               style={{marginRight: 5}}></Lock>
@@ -170,7 +170,7 @@ export default function Admin() {
                             <div className="row text-muted">
                                 <div className="col-6 text-start">
                                     <p className="mb-0">
-                                        <a className="text-muted" href="/admin"
+                                        <a className="text-muted" href="/admin/dashboards"
                                         ><strong>Online Toeic Test</strong></a> ©
                                     </p>
                                 </div>

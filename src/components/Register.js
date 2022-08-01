@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-import logo from "../logo.svg";
+import logo from "../logo.png";
 import {useNavigate} from "react-router-dom";
 import {HTTP} from "../http-common";
+import bg from '../bg.jpg';
 
 
 export default function Register() {
@@ -41,15 +42,23 @@ export default function Register() {
 
     return (
         <>
-            <div>
+            <div style={{
+                background: `url(${bg})`,
+                backgroundSize: "100vw 100vh",
+                width: "100%",
+                height: "100%",
+                zIndex: -99999,
+                position: "fixed"
+            }}></div>
+            <div style={{}}>
                 <main className="d-flex w-100">
                     <div className="container d-flex flex-column">
                         <div className="row vh-100">
                             <div className="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
                                 <div className="d-table-cell align-middle">
                                     <div className="text-center mt-4">
-                                        <h1 className="h2">Online Toeic Test</h1>
-                                        <p className="lead">
+                                        <h1 className="h2" style={{color: "white"}}>Online Toeic Test</h1>
+                                        <p className="lead" style={{color: "white"}}>
                                             Đăng ký tài khoản
                                         </p>
                                     </div>
@@ -58,7 +67,7 @@ export default function Register() {
                                             <div className="m-sm-4">
                                                 <div className="text-center">
                                                     <img src={logo} alt="Charles Hall"
-                                                         className="img-fluid rounded-circle" width={132} height={132}/>
+                                                         className="img-fluid" width={180} height={180}/>
                                                 </div>
                                                 <form>
                                                     <div className="mb-3">

@@ -25,7 +25,7 @@ export default function User() {
     useEffect(() => {
         setUrl(location.pathname);
         console.log(url);
-    });
+    },[location]);
 
 
     function LogOut() {
