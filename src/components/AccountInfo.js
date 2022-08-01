@@ -23,7 +23,18 @@ export default function AccountInfo() {
         }).catch((error) => {
             console.log(error)
         })
-    },[])
+    }, [])
+
+    function UpdateAccInfo(e) {
+        e.preventDefault();
+        HTTP.put('/updateAccInfo', account).then((res) => {
+            console.log(res.data);
+            window.ShowAlert('success','Cập nhật thông tin tài khoản thành công');
+        }).catch((error) => {
+            console.log(error);
+            window.ShowAlert('danger','Cập nhật thông tin tài khoản không thành công');
+        })
+    }
 
     return (
         <>
@@ -45,7 +56,8 @@ export default function AccountInfo() {
                                                 <form>
                                                     <div className="mb-3">
                                                         <label className="form-label">Email</label>
-                                                        <input className="form-control form-control-lg" type="email" disabled
+                                                        <input className="form-control form-control-lg" type="email"
+                                                               disabled
                                                                name="email" placeholder="Nhập Email"
                                                                value={account.email}
                                                                onChange={(e) => {
@@ -90,12 +102,12 @@ export default function AccountInfo() {
                                                     <div className="mb-3">
                                                         Phân quyền: <div
                                                         className={account.role === 'ROLE_ADMIN' ? "badge bg-primary" : (account.role === 'ROLE_USER' ? "badge bg-success" : "badge bg-warning")}
-                                                    >{account.role.substring(5,account.role.length)}</div>
+                                                    >{account.role.substring(5, account.role.length)}</div>
                                                     </div>
                                                     <div className="text-center mt-3">
                                                         {/*<a href="index.html" className="btn btn-lg btn-primary">Sign in</a>*/}
                                                         <button type="submit" className="btn btn-lg btn-primary"
-
+                                                                onClick={UpdateAccInfo}
                                                         >Lưu
                                                         </button>
                                                     </div>

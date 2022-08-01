@@ -78,7 +78,10 @@ export default function Admin() {
                                                   style={{marginRight: 5}}></IconUser>
                                         Thông tin tài khoản</a>
                                     <div className="dropdown-divider"/>
-                                    <a className="dropdown-item" href="index.html">
+                                    <a className="dropdown-item"
+                                       onClick={() => {
+                                           navigate('/changePassword')
+                                       }}>
                                         <Lock height="18" width="18" strokeWidth="2"
                                               style={{marginRight: 5}}></Lock>
                                         Đổi mật khẩu</a>
@@ -158,7 +161,7 @@ export default function Admin() {
                     </div>
                 </nav>
                 <div className="main">
-                    <main className="content" style={{marginTop: 50, overflowY:"scroll"}}>
+                    <main className="content" style={{marginTop: 50, overflowY: "scroll"}}>
 
                         <Outlet/>
                     </main>

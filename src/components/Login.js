@@ -10,7 +10,7 @@ export default function Login() {
 
     function loginNavigate() {
         if (sessionStorage.getItem('role') === 'ROLE_ADMIN') {
-            navigate('/admin');
+            navigate('/admin/dashboards');
         } else if (sessionStorage.getItem('role') === 'ROLE_USER') {
             navigate('/home');
         } else {
@@ -25,6 +25,10 @@ export default function Login() {
 
     const login = (e) => {
         e.preventDefault();
+        if(uid===''||pass===''){
+            window.ShowAlert('warning','Bạn chưa điền đủ tài khoản và mật khẩu');
+            return
+        }
         HTTP.post('login', {
             username: uid,
             password: pass

@@ -14,7 +14,13 @@ export default function AdminCreateAccountModal(props) {
         address: '',
         role: ''
     })
-    const handleClose = () => {setShow(false); window.editID=0;}
+
+    let pass2 = '';
+
+    const handleClose = () => {
+        setShow(false);
+        window.editID = 0;
+    }
     const handleShow = () => {
         setShow(true);
     }
@@ -42,14 +48,23 @@ export default function AdminCreateAccountModal(props) {
             address: '',
             role: 'ROLE_USER'
         })
-    },[window.editID])
+    }, [window.editID])
 
     window.ShowCreateAcc = handleShow;
 
-    function CreatAccount() {
+    function CreateAccount() {
         if (window.editID === 0) {
+            if (account.email === '' || account.fullName === '' || account.password === '' || account.phone === '' || account.address === '') {
+                window.ShowAlert('warning', 'Bạn chưa nhập đủ thông tin');
+                return
+            }
+            if (account.password !== pass2) {
+                window.ShowAlert('warning', 'Mật khẩu nhập lại không khớp');
+                return
+            }
             HTTP.post('/admin/account', account).then((res) => {
                 console.log(res.data);
+                handleClose();
                 window.ShowAlert('success', 'Tạo tài khoản thành công');
                 props.Reload();
             }).catch((error) => {
@@ -57,8 +72,13 @@ export default function AdminCreateAccountModal(props) {
                 window.ShowAlert('danger', 'Tạo tài khoản không thành công');
             })
         } else {
-            HTTP.put('/admin/account/' +account.id, account).then((res) => {
+            if (account.email === '' || account.fullName === '' || account.phone === '' || account.address === '') {
+                window.ShowAlert('warning', 'Bạn chưa nhập đủ thông tin');
+                return
+            }
+            HTTP.put('/admin/account/' + account.id, account).then((res) => {
                 console.log(res.data);
+                handleClose();
                 window.ShowAlert('success', 'Sửa thông tin tài khoản thành công');
                 props.Reload();
             }).catch((error) => {
@@ -83,6 +103,7 @@ export default function AdminCreateAccountModal(props) {
                                 <label className="form-label">Email</label>
                                 <input className="form-control form-control-lg" type="email"
                                        name="email" placeholder="Nhập địa chỉ email"
+                                       readOnly={window.editID !== 0}
                                        value={account.email}
                                        onChange={(e) => {
                                            setAccount(prevState => {
@@ -147,6 +168,9 @@ export default function AdminCreateAccountModal(props) {
                                     <label className="form-label">Nhập lại Password</label>
                                     <input className="form-control form-control-lg" type="password"
                                            name="password" placeholder="Nhập lại password"
+                                           onChange={(e) => {
+                                               pass2 = e.target.value;
+                                           }}
                                     />
                                 </div>
                             </div>
@@ -209,8 +233,7 @@ export default function AdminCreateAccountModal(props) {
                 <Modal.Footer>
                     <button className="btn btn-primary"
                             onClick={() => {
-                                CreatAccount();
-                                handleClose()
+                                CreateAccount();
                             }}
                     >Lưu
                     </button>

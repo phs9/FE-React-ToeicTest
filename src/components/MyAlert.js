@@ -29,7 +29,7 @@ export default function MyAlert() {
                 marginTop: "10px",
                 position: "fixed",
                 width: "100%",
-                zIndex: 1000,
+                zIndex: 10000000000,
                 justifyContent: "center",
                 display: "flex"
             }}>

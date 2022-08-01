@@ -63,8 +63,8 @@ export default function ListResultComponent() {
                                     })}
                                     </tbody>
                                 </table>
-                                <div>Xem bảng quy đổi điểm TOEIC <a onClick={() => {
-                                    navigate('/home');
+                                <div>Xem bảng quy đổi điểm TOEIC <a href="/home#TP" onClick={() => {
+                                    //navigate('/home#TP');
                                 }}
                                                                     style={{
                                                                         color: "blue",

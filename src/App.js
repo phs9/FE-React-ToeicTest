@@ -18,6 +18,7 @@ import FilesManagement from "./components/Admin/FilesManagement";
 import HomePage from "./components/User/HomePage";
 import Register from "./components/Register";
 import AccountInfo from "./components/AccountInfo";
+import ChangePasword from "./components/ChangePasword";
 
 function App() {
     let checkLogin = sessionStorage.getItem('token') === null ? false : true;
@@ -46,6 +47,7 @@ function App() {
                         <Route path="/result" element={<ExamResult/>}/>
                         <Route path="/results" element={<ListResultComponent/>}/>
                         <Route path="/accInfo" element={<AccountInfo/>}/>
+                        <Route path="/changePassword" element={<ChangePasword/>}/>
                     </Route>
                     <Route path="/admin" element={<Admin/>}>
                         <Route path="dashboards" element={<DashBoardsComponent/>}/>
@@ -55,6 +57,7 @@ function App() {
                         <Route path="questionsManagement" element={<QuestionsManagement/>}/>
                         <Route path="filesManagement" element={<FilesManagement/>}/>
                         <Route path="accInfo" element={<AccountInfo/>}/>
+                        <Route path="changePassword" element={<ChangePasword/>}/>
                     </Route>
                     <Route path="*" element={<NoPage/>}/>
                 </Route>

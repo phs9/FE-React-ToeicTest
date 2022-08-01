@@ -16,8 +16,18 @@ export default function Register() {
         role: 'ROLE_USER'
     })
 
-    function Register(e){
+    let pass2 = ''
+
+    function Register(e) {
         e.preventDefault();
+        if (account.email === '' || account.fullName === '' || account.password === '' || account.phone === '' || account.address === '') {
+            window.ShowAlert('warning', 'Bạn chưa nhập đủ thông tin');
+            return
+        }
+        if (account.password !== pass2) {
+            window.ShowAlert('warning', 'Mật khẩu nhập lại không khớp');
+            return
+        }
         HTTP.post('/register', account).then((res) => {
             console.log(res.data);
             window.ShowAlert('success', 'Đăng ký tài khoản thành công');
@@ -86,7 +96,7 @@ export default function Register() {
                                                         <input className="form-control form-control-lg" type="password"
                                                                name="password2" placeholder="Nhập lại mật khẩu"
                                                                onChange={(e) => {
-
+                                                                   pass2 = e.target.value;
                                                                }}/>
                                                     </div>
                                                     <div className="mb-3">
@@ -109,7 +119,12 @@ export default function Register() {
                                                                    })
                                                                }}/>
                                                     </div>
-                                                    <div>Bằng việc nhấn nút đăng ký, bạn đồng ý với <b style={{color:"blue",textDecoration:"underline", cursor:"pointer"}}>điều khoản sử dụng</b> của chúng tôi</div>
+                                                    <div>Bằng việc nhấn nút đăng ký, bạn đồng ý với <b style={{
+                                                        color: "blue",
+                                                        textDecoration: "underline",
+                                                        cursor: "pointer"
+                                                    }}>điều khoản sử dụng</b> của chúng tôi
+                                                    </div>
                                                     <div className="text-center mt-3">
                                                         {/*<a href="index.html" className="btn btn-lg btn-primary">Sign in</a>*/}
                                                         <button type="submit" className="btn btn-lg btn-primary"
@@ -120,7 +135,7 @@ export default function Register() {
                                                     <div>Đã có tài khoản? <a
                                                         style={{color: "blue", textDecoration: "underline"}}
                                                         onClick={() => {
-                                                            navigate('/login')
+                                                            navigate('/')
                                                         }}>Đăng nhập</a></div>
                                                 </form>
                                             </div>
