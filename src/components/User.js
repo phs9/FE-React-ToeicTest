@@ -126,7 +126,7 @@ export default function User() {
                                                 <li className={"sidebar-item " + (url === (id === undefined ? '/exam' : '/exam/' + id) ? "active" : "")}>
                                                     <a className="sidebar-link" onClick={() => navigate('/exam')}>
                                                         <Edit/>
-                                                        <span className="align-middle">Thi thử</span>
+                                                        <span className="align-middle">Thi</span>
                                                     </a>
                                                 </li>
                                                 <li className={"sidebar-item " + (url === '/results' ? "active" : "")}>
